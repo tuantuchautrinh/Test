@@ -12,4 +12,14 @@
             }
         }
     }
+
+    function tentheloai($parent) {
+        if($parent == 0) {
+            echo 'Root';
+        } else {
+            // first() lấy 1 cái
+            return DB::table('category')->where('id', $parent)->first()->name;
+        }
+
+    }
 ?>

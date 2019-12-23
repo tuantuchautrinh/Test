@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Product\StoreRequest;
 use App\Http\Requests\Product\UpdateRequest;
+use App\Models\Category;
 use App\Models\Product;
 
 class ProductController extends Controller
@@ -23,7 +24,7 @@ class ProductController extends Controller
         // return view('backend.master');
 
         // Xem dữ liệu của database trên server
-        $data = Product::all();
+        $data = Product::with('category')->get();
         // dd($data);
 
         // ['products' => $data] với "products" tên do mình đặt và truyền dữ liệu qua là "data" sau đó truyền vào view(LaravelProject/resources/views/backend/modules/product/index.blade.php)
@@ -37,7 +38,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.modules.product.create');
+        $data = Category::all();
+        return view('backend.modules.product.create',['categories' => $data]);
     }
 
     /**
@@ -150,9 +152,10 @@ class ProductController extends Controller
     public function edit($id)
     {
         // ta lấy dữ liệu cần sửa trong database đổ ra
-        $data = Product::find($id);
+        $product = Product::find($id);
+        $category = Category::all();
         // dd($data);
-        return view('backend.modules.product.edit',['product' => $data]);
+        return view('backend.modules.product.edit',['product' => $product, 'category' => $category]);
     }
 
     /**

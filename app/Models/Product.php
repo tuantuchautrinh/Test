@@ -21,5 +21,9 @@ class Product extends Model
      * @var array
      */
     // fillable bao gồm các cột được phép tương tác đến
-    protected $fillable = ['id', 'name', 'price', 'image', 'intro', 'content', 'status', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'name', 'price', 'image', 'intro', 'content', 'status', 'category_id', 'created_at', 'updated_at'];
+
+    public function category() {
+        return $this->belongsTo('App\Models\Category');
+    }
 }

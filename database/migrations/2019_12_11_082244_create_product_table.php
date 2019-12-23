@@ -29,7 +29,7 @@ class CreateProductTable extends Migration
             $table->tinyInteger('status')->default(1)->comment('1 Show - 2 Hide');
             // # Foreign Key Constraints
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('category');
             $table->timestamps();
         });
     }

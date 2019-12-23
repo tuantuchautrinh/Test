@@ -3,15 +3,16 @@
 @section('content')
 
 @if(session('thanhcong'))
-        <div class="result_msg">
-            {{ session('thanhcong') }}
-        </div>
-    @endif
+    <div class="result_msg">
+        {{ session('thanhcong') }}
+    </div>
+@endif
 
     <table class="list_table">
         <tr class="list_heading">
             <td class="id_col">STT</td>
             <td>Tên sản phẩm</td>
+            <td>Thể loại</td>
             <td>Giá</td>
             <td>Thời Gian</td>
             <td class="action_col">Quản lý?</td>
@@ -22,6 +23,7 @@
         <tr class="list_data">
             {{--- $loop->iteration là mặc định không bao giờ thay đổi và tăng từ 1 đến n ---}}
             <td class="aligncenter">{{ $loop->iteration }}</td>
+            <td class="list_td aligncenter">{{ $item->name }}</td>
             <td class="list_td aligncenter">{{ $item->name }}</td>
             <td class="list_td aligncenter">{{ number_format($item->price,0,",",".") }}</td>
             {{--- change the date format in laravel view page at "92 check" ---}}
